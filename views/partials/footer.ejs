@@ -1,0 +1,49 @@
+<footer class="footer">
+  <div class="container">
+    <span class="text-muted">Example of Mailchimp Email List using <b>Node.js</b>, <b>Express</b>, <b>Ejs</b>, <b>Body Parser</b>, <b>MD5</b>, <b>Superagent</b></span>
+  </div>
+</footer>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $( document ).ready(function() {
+        $("form").on('submit',function(){
+          var fname = $("#fname").val();
+          var lname = $("#lname").val();
+          var email_address = $("#email_address").val();
+          $.ajax({
+                type : 'POST',
+                url :'/addList',
+                data:{'fname' : fname,'lname' : lname,'email_address':email_address },
+                success:function(data){
+                    if(data) {
+                        $(".add-col .alert.alert-success").fadeIn('slow');
+                        $("form").trigger("reset");
+                    }else{
+                        $(".add-col .alert.alert-danger").fadeIn('slow');
+                    }
+                }
+          });
+          return false;
+      });
+      $(".delete_list").on("click",function(event){
+          event.preventDefault();
+          var email = $(this).attr("data-email");
+          var id = $(this).attr("data-id");
+          $.ajax({
+                type : 'POST',
+                url :'/deleteList',
+                data:{'email':email },
+                success:function(data){
+                    if(data) {
+                        $("#"+id).hide();
+                        $(".view-col .alert.alert-success").fadeIn('slow');
+                        //$("form").trigger("reset");
+                    }else{
+                        $(".view-col .alert.alert-danger").fadeIn('slow');
+                    }
+                }
+          });
+      });
+    });
+</script>

@@ -1,0 +1,66 @@
+<html>
+    <% include partials/head.ejs %>
+    <body class="bg-light">
+        <div class="container">
+            <div class="py-5 text-center">
+                <h2>Mailchimp With node.js</h2>
+            </div>
+
+            <div class="row">
+                <div class="col-md-5 add-col">
+                    <h4 class="mb-3">Add Record in Mailchimp List</h4>
+                    <div class="alert alert-success" role="alert">
+                      Member is added into list
+                    </div>
+                    <div class="alert alert-danger" role="alert">
+                      Something went wrong. Please try again later
+                    </div>
+                    <form class="needs-validation" id="addList_Form" method="post">
+                      <div class="mb-3">
+                        <div class="input-group">
+                          <input type="text" class="form-control" id="fname" placeholder="First Name" required>
+                        </div>
+                     </div>
+                     <div class="mb-3">
+                       <div class="input-group">
+                         <input type="text" class="form-control" id="lname" placeholder="Last Name" required>
+                       </div>
+                    </div>
+                     <div class="mb-3">
+                        <div class="input-group">
+                          <input type="text" class="form-control" id="email_address" placeholder="Email Address" required>
+                        </div>
+                      </div>
+                      <button class="btn btn-primary btn-lg btn-block" type="submit">Add</button>
+                    </form>
+                </div>
+                <div class="col-md-7 view-col" style="background-color:#fff;padding: 15px;text-align: center;">
+                    <h4 class="mb-3">Current Records</h4>
+                    <div class="alert alert-success" role="alert">
+                      Member is removed from list
+                    </div>
+                    <div class="alert alert-danger" role="alert">
+                      Something went wrong. Please try again later
+                    </div>
+                    <table class="table">
+                        <thead>
+                               <th>Full Name</th>
+                               <th>Email Address</th>
+                               <th>Action</th>
+                        </thead>
+                        <tbody>
+                               <% memberLists.forEach(function(member) {  %>
+                                 <tr id="<%= member.id %>">
+                                       <td><%= member.merge_fields.FNAME %> <%= member.merge_fields.LNAME %></td>
+                                       <td><%= member.email_address %></td>
+                                       <td><a href="#" data-email="<%= member.email_address %>" data-id="<%= member.id %>" class="delete_list" >Delete</a></td>
+                                 </tr>
+                               <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <% include partials/footer.ejs %>
+    </body>
+</html>
