@@ -1,0 +1,25 @@
+{
+  "name": "mailchimp-nodejs",
+  "version": "1.0.0",
+  "description": "Add/view  Subscription to mailchimp using node.js. ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Mailchimp",
+    "node.js",
+    "express",
+    "ejs"
+  ],
+  "author": "Keval Thacker",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "crypto": "^1.0.1",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "md5": "^2.2.1",
+    "superagent": "^3.8.3"
+  }
+}
